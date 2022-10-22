@@ -5,84 +5,68 @@ import PlantingList from './PlantingList';
 import PlantingDetail from './PlantingDetail';
 
 const TreeInventoryControl = () => {
-  const [state, setState] = useState({
-    formVisible: false,
-    mainPlantingList: [],
-    selectedPlanting: null,
-    editing: false
-  })
+  const [formVisible, setFormVisible] = useState(false);
+  const [mainPlantingList, setMainPlantingList] = useState([]);
+  const [selectedPlanting, setSelectedPlanting] =useState(null);
+  const [editing, setEditing] = useState(false);
 
   function handleClick() {
-    if (state.selectedPlanting != null) {
-      setState({
-        ...state,
-        formVisible: false,
-        selectedPlanting: null,
-        editing: false
-      })
+    if (selectedPlanting != null) {
+      setFormVisible(false);
+      setSelectedPlanting(null);
+      setEditing(false);
     } else {
-      setState(prevState => ({
-        formVisible: !prevState.formVisible
-      }))
+      setFormVisible(!formVisible);
     }
   }
 
   function handleDeletingPlanting(id) {
-    const newMainPlantingList = state.mainPlantingList.filter(planting => planting.id !== id);
-    setState({
-      ...state,
-      mainPlantingList: newMainPlantingList,
-      selectedPlanting: null
-    });
+    const newMainPlantingList = mainPlantingList.filter(planting => planting.id !== id);
+    setMainPlantingList(newMainPlantingList);
+    setSelectedPlanting(null);
   }
 
   function handleEditClick() {
-    setState({...state, editing: true});
+    setEditing(true);
   }
 
   function handleEditingPlantingInList(plantingToEdit) {
-    const editedMainPlantingList = state.mainPlantingList
-      .filter(planting => planting.id !== state.selectedPlanting.id)
+    const editedMainPlantingList = mainPlantingList
+      .filter(planting => planting.id !== selectedPlanting.id)
       .concat(plantingToEdit);
-    setState({
-      ...state,
-      mainPlantingList: editedMainPlantingList,
-      editing: false,
-      selectedPlanting: null
-    });
+    setEditing(false);
+    setMainPlantingList(editedMainPlantingList);
+    
   }
 
   function handleAddingNewPlantingToList(newPlanting) {
-    const newMainPlantingList = state.mainPlantingList.concat(newPlanting);
-    setState({
-      ...state,
-      formVisible: false,
-      mainPlantingList: newMainPlantingList
-    });
+    const newMainPlantingList = mainPlantingList.concat(newPlanting);
+    setMainPlantingList(newMainPlantingList)
+    setFormVisible(false);
   }
 
   function handleChangingSelectedPlanting(id) {
-    const selectedPlanting = state.mainPlantingList.filter(planting => planting.id === id)[0];
-    setState(...state, {selectedPlanting: selectedPlanting});
+    const selection = mainPlantingList.filter(planting => planting.id === id)[0];
+    setSelectedPlanting(selection);
   }
 
   let currentlyVisibleState = null;
   let buttonText = null; 
 
-  if (state.editing ) {      
-    currentlyVisibleState = <EditPlantingForm planting = {state.selectedPlanting} onEditPlanting = {handleEditingPlantingInList} />
+  if (editing ) {      
+    currentlyVisibleState = <EditPlantingForm planting = {selectedPlanting} onEditPlanting = {this.handleEditingPlantingInList} />
     buttonText = "Return to Planting List";
-  } else if (state.selectedPlanting != null) {
+  } else if (selectedPlanting != null) {
     currentlyVisibleState = <PlantingDetail 
-    planting={state.selectedPlanting} 
-    onClickingDelete={handleDeletingPlanting}
-    onClickingEdit = {handleEditClick} />
+    planting={selectedPlanting} 
+    onClickingDelete={this.handleDeletingPlanting}
+    onClickingEdit = {this.handleEditClick} />
     buttonText = "Return to Planting List";
-  } else if (state.formVisible) {
-    currentlyVisibleState = <NewPlantingForm onNewPlantingCreation={handleAddingNewPlantingToList}/>;
+  } else if (formVisible) {
+    currentlyVisibleState = <NewPlantingForm onNewPlantingCreation={this.handleAddingNewPlantingToList}/>;
     buttonText = "Return to Planting List"; 
   } else {
-    currentlyVisibleState = <PlantingList onPlantingSelection={handleChangingSelectedPlanting} plantingList={state.mainPlantingList} />;
+    currentlyVisibleState = <PlantingList onPlantingSelection={this.handleChangingSelectedPlanting} plantingList={mainPlantingList} />;
     buttonText = "Add Planting"; 
   }
 
