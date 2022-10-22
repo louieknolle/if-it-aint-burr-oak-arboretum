@@ -1,12 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import Planting from "./Planting";
+import PropTypes from "prop-types";
 
-const PlantingList = props => {
+function PlantingList(props){
+
   return (
-    <div>PlantingList</div>
-  )
+    <React.Fragment>
+      <hr/>
+      {props.PlantingList.map((planting) =>
+        <Planting 
+          whenPlantingClicked={props.onPlantingSelection}
+          species={planting.species}
+          hardinessZone={planting.hardinessZone}
+          typeOfSoil={planting.typeOfSoil}
+          id={planting.id}
+          key={planting.id}/>
+      )}
+    </React.Fragment>
+  );
 }
 
-PlantingList.propTypes = {};
+PlantingList.propTypes = {
+  plantingList: PropTypes.array,
+  onPlantingSelection: PropTypes.func
+};
 
 export default PlantingList;
