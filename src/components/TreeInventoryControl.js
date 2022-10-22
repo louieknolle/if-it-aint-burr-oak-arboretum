@@ -1,9 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import NewPlantingForm from './NewPlantingForm';
+import PlantingList from './PlantingList';
+import PlantingDetail from './PlantingDetail';
 
 const TreeInventoryControl = props => {
   return (
-    <div>TreeInventoryControl</div>
+    <React.Fragment>
+      <NewPlantingForm />
+      <PlantingList />
+      <PlantingDetail />
+    </React.Fragment>
   )
 }
 
