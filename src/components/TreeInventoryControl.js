@@ -3,7 +3,7 @@ import NewPlantingForm from './NewPlantingForm';
 import PlantingList from './PlantingList';
 import PlantingDetail from './PlantingDetail';
 
-const TreeInventoryControl = props => {
+const TreeInventoryControl = (props) => {
   return (
     <React.Fragment>
       <NewPlantingForm />
