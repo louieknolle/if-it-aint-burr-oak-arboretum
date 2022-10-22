@@ -54,19 +54,19 @@ const TreeInventoryControl = () => {
   let buttonText = null; 
 
   if (editing ) {      
-    currentlyVisibleState = <EditPlantingForm planting = {selectedPlanting} onEditPlanting = {this.handleEditingPlantingInList} />
+    currentlyVisibleState = <EditPlantingForm planting = {selectedPlanting} onEditPlanting = {handleEditingPlantingInList} />
     buttonText = "Return to Planting List";
   } else if (selectedPlanting != null) {
     currentlyVisibleState = <PlantingDetail 
     planting={selectedPlanting} 
-    onClickingDelete={this.handleDeletingPlanting}
-    onClickingEdit = {this.handleEditClick} />
+    onClickingDelete={handleDeletingPlanting}
+    onClickingEdit = {handleEditClick} />
     buttonText = "Return to Planting List";
   } else if (formVisible) {
-    currentlyVisibleState = <NewPlantingForm onNewPlantingCreation={this.handleAddingNewPlantingToList}/>;
+    currentlyVisibleState = <NewPlantingForm onNewPlantingCreation={handleAddingNewPlantingToList}/>;
     buttonText = "Return to Planting List"; 
   } else {
-    currentlyVisibleState = <PlantingList onPlantingSelection={this.handleChangingSelectedPlanting} plantingList={mainPlantingList} />;
+    currentlyVisibleState = <PlantingList onPlantingSelection={handleChangingSelectedPlanting} plantingList={mainPlantingList} />;
     buttonText = "Add Planting"; 
   }
 
