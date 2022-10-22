@@ -7,7 +7,7 @@ function PlantingList(props){
   return (
     <React.Fragment>
       <hr/>
-      {props.PlantingList.map((planting) =>
+      {props.plantingList.map((planting) =>
         <Planting 
           whenPlantingClicked={props.onPlantingSelection}
           species={planting.species}

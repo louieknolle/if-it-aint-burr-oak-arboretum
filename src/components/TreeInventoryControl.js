@@ -65,7 +65,7 @@ const TreeInventoryControl = () => {
     const selectedPlanting = state.mainPlantingList.filter(planting => planting.id === id)[0];
     setState(...state, {selectedPlanting: selectedPlanting});
   }
-  
+
   let currentlyVisibleState = null;
   let buttonText = null; 
 
@@ -88,8 +88,14 @@ const TreeInventoryControl = () => {
 
   return (
     <React.Fragment>
+      <div className='container py-10 px-10 mx-0 min-w-full grid place-items-center'>
         {currentlyVisibleState}
-        <button onClick={handleClick}>{buttonText}</button> 
+        <button 
+          className='border-4 p-4 m-4 flex'
+          onClick={handleClick}>
+            {buttonText}
+        </button> 
+        </div>
       </React.Fragment>
   )
 }
