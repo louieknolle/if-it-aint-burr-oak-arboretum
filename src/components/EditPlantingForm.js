@@ -7,7 +7,11 @@ function EditPlantingForm (props) {
 
   function handleEditPlantingFormSubmission(event) {
     event.preventDefault();
-    props.onEditPlanting({names: event.target.names.value, location: event.target.location.value, issue: event.target.issue.value, id: planting.id});
+    props.onEditPlanting({species: event.target.species.value, 
+                          hardinessZone: event.target.hardinessZone.value, 
+                          typeOfSoil: event.target.typeOfSoil.value, 
+                          id: planting.id
+                        });
   }
 
   return (

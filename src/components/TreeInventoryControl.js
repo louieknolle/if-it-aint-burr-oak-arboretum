@@ -65,7 +65,7 @@ const TreeInventoryControl = () => {
     const selectedPlanting = state.mainPlantingList.filter(planting => planting.id === id)[0];
     setState(...state, {selectedPlanting: selectedPlanting});
   }
-
+  
   let currentlyVisibleState = null;
   let buttonText = null; 
 
@@ -85,8 +85,6 @@ const TreeInventoryControl = () => {
     currentlyVisibleState = <PlantingList onPlantingSelection={handleChangingSelectedPlanting} plantingList={state.mainPlantingList} />;
     buttonText = "Add Planting"; 
   }
-
-
 
   return (
     <React.Fragment>
