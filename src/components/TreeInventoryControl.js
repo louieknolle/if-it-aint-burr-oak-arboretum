@@ -12,7 +12,7 @@ const TreeInventoryControl = () => {
     editing: false
   })
 
-  handleClick = () => {
+  function handleClick() {
     if (state.selectedPlanting != null) {
       setState({
         ...state,
@@ -27,7 +27,7 @@ const TreeInventoryControl = () => {
     }
   }
 
-  handleDeletingPlanting = (id) => {
+  function handleDeletingPlanting(id) {
     const newMainPlantingList = state.mainPlantingList.filter(planting => planting.id !== id);
     setState({
       ...state,
@@ -36,11 +36,11 @@ const TreeInventoryControl = () => {
     });
   }
 
-  handleEditClick = () => {
+  function handleEditClick() {
     setState({...state, editing: true});
   }
 
-  handleEditingPlantingInList = (plantingToEdit) => {
+  function handleEditingPlantingInList(plantingToEdit) {
     const editedMainPlantingList = state.mainPlantingList
       .filter(planting => planting.id !== state.selectedPlanting.id)
       .concat(plantingToEdit);
@@ -52,7 +52,7 @@ const TreeInventoryControl = () => {
     });
   }
 
-  handleAddingNewPlantingToList = (newPlanting) => {
+  function handleAddingNewPlantingToList(newPlanting) {
     const newMainPlantingList = state.mainPlantingList.concat(newPlanting);
     setState({
       ...state,
@@ -61,23 +61,39 @@ const TreeInventoryControl = () => {
     });
   }
 
-  handleChangingSelectedPlanting = (id) => {
-    const selectedPlanting = this.state.mainPlantingList.filter(planting => planting.id === id)[0];
+  function handleChangingSelectedPlanting(id) {
+    const selectedPlanting = state.mainPlantingList.filter(planting => planting.id === id)[0];
     setState(...state, {selectedPlanting: selectedPlanting});
+  }
+
+  let currentlyVisibleState = null;
+  let buttonText = null; 
+
+  if (state.editing ) {      
+    currentlyVisibleState = <EditPlantingForm planting = {state.selectedPlanting} onEditPlanting = {handleEditingPlantingInList} />
+    buttonText = "Return to Planting List";
+  } else if (state.selectedPlanting != null) {
+    currentlyVisibleState = <PlantingDetail 
+    planting={state.selectedPlanting} 
+    onClickingDelete={handleDeletingPlanting}
+    onClickingEdit = {handleEditClick} />
+    buttonText = "Return to Planting List";
+  } else if (state.formVisible) {
+    currentlyVisibleState = <NewPlantingForm onNewPlantingCreation={handleAddingNewPlantingToList}/>;
+    buttonText = "Return to Planting List"; 
+  } else {
+    currentlyVisibleState = <PlantingList onPlantingSelection={handleChangingSelectedPlanting} plantingList={state.mainPlantingList} />;
+    buttonText = "Add Planting"; 
   }
 
 
 
   return (
     <React.Fragment>
-      <EditPlantingForm />
-      <NewPlantingForm />
-      <PlantingList />
-      <PlantingDetail />
-    </React.Fragment>
+        {currentlyVisibleState}
+        <button onClick={handleClick}>{buttonText}</button> 
+      </React.Fragment>
   )
 }
-
-TreeInventoryControl.propTypes = {}
 
 export default TreeInventoryControl
