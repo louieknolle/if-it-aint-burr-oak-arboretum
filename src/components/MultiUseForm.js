@@ -4,22 +4,30 @@ import PropTypes from 'prop-types';
 const MultiUseForm = (props) => {
   return (
     <React.Fragment>
-      <form onSubmit={props.formSubmissionHandler}>
+      <form 
+        onSubmit={props.formSubmissionHandler}
+        className='container py-10 px-10 mx-0 min-w-full grid place-items-center'
+        >
         <input
-          className='border-2'
+          className='border-2 m-2'
           type='text'
           name='species'
           placeholder='Tree species' />
         <input
-          className='border-2'
+          className='border-2 m-2'
           type='text'
           name='hardinessZone'
           placeholder='Plant Hardiness Zone' />
-        <textarea
-          className='border-2'
+        <input
+          type='text'
+          className='border-2 m-2'
           name='typeOfSoil'
-          placeholder='Prefrred soil (e.g. loamy, peat, sandy)' />
-        <button type='submit'>{props.buttonText}</button>
+          placeholder='Prefrred soil (e.g. loamy)' />
+        <button 
+          className='border-4 p-4 m-4 flex'
+          type='submit'>
+            {props.buttonText}
+        </button>
       </form>
     </React.Fragment>
   )
