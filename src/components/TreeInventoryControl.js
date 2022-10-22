@@ -50,6 +50,20 @@ const TreeInventoryControl = () => {
     setSelectedPlanting(selection);
   }
 
+  function handleDecrementTreeInventory(id) {
+    const selection = mainPlantingList.filter(planting => planting.id === id)[0];
+    // const selectionIndex = mainPlantingList.indexOf(selection);
+    const remainingPlantings = mainPlantingList.filter(planting => planting.id !== selection);
+    selection.treeInventory = selection.treeInventory - 1;
+    // const newMainPlantingList = remainingPlantings.slice(0, selectionIndex)
+    //                             .concat(selection)
+    //                             .concat(remainingPlantings.slice(selectionIndex));
+    const newMainPlantingList = remainingPlantings.concat(selection);
+    setMainPlantingList(newMainPlantingList);
+  }
+
+  
+
   let currentlyVisibleState = null;
   let buttonText = null; 
 
@@ -66,7 +80,11 @@ const TreeInventoryControl = () => {
     currentlyVisibleState = <NewPlantingForm onNewPlantingCreation={handleAddingNewPlantingToList}/>;
     buttonText = "Return to Planting List"; 
   } else {
-    currentlyVisibleState = <PlantingList onPlantingSelection={handleChangingSelectedPlanting} plantingList={mainPlantingList} />;
+    currentlyVisibleState = <PlantingList 
+      onPlantingSelection={handleChangingSelectedPlanting} 
+      onClickingSellTree={handleDecrementTreeInventory}
+      plantingList={mainPlantingList} 
+      />;
     buttonText = "Add Planting"; 
   }
 

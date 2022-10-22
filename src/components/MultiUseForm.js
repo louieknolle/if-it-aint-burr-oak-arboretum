@@ -23,6 +23,11 @@ const MultiUseForm = (props) => {
           className='border-2 m-2'
           name='typeOfSoil'
           placeholder='Prefrred soil (e.g. loamy)' />
+        <input
+          type='number'
+          className='border-2 m-2'
+          name='treeInventory'
+          placeholder='Total trees planted' />  
         <button 
           className='border-4 p-4 m-4 flex'
           type='submit'>

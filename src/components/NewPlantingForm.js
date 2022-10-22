@@ -10,6 +10,7 @@ const NewPlantingForm = (props) => {
       species: event.target.species.value, 
       hardinessZone: event.target.hardinessZone.value, 
       typeOfSoil: event.target.typeOfSoil.value, 
+      treeInventory: parseInt(event.target.treeInventory.value),
       id: v4()
     });
   }

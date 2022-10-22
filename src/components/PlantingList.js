@@ -10,11 +10,15 @@ function PlantingList(props){
       {props.plantingList.map((planting) =>
         <Planting 
           whenPlantingClicked={props.onPlantingSelection}
+          whenSellTreeClicked={props.onClickingSellTree}
           species={planting.species}
           hardinessZone={planting.hardinessZone}
           typeOfSoil={planting.typeOfSoil}
+          treeInventory={planting.treeInventory}
           id={planting.id}
-          key={planting.id}/>
+          key={planting.id}
+          className='card'
+          />
       )}
     </React.Fragment>
   );
