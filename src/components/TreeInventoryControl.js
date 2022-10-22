@@ -5,14 +5,68 @@ import PlantingList from './PlantingList';
 import PlantingDetail from './PlantingDetail';
 
 const TreeInventoryControl = () => {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [mainPlantingList, setMainPlantingList] = useState([]);
-  const [selectedPlanting, setSelectedPlanting] = useState(null);
-  const [editing, setEditing] = useState(false);
+  const [state, setState] = useState({
+    formVisible: false,
+    mainPlantingList: [],
+    selectedPlanting: null,
+    editing: false
+  })
 
-  const handleClick = () => {
-    //all the setState methods
+  handleClick = () => {
+    if (state.selectedPlanting != null) {
+      setState({
+        ...state,
+        formVisible: false,
+        selectedPlanting: null,
+        editing: false
+      })
+    } else {
+      setState(prevState => ({
+        formVisible: !prevState.formVisible
+      }))
+    }
   }
+
+  handleDeletingPlanting = (id) => {
+    const newMainPlantingList = state.mainPlantingList.filter(planting => planting.id !== id);
+    setState({
+      ...state,
+      mainPlantingList: newMainPlantingList,
+      selectedPlanting: null
+    });
+  }
+
+  handleEditClick = () => {
+    setState({...state, editing: true});
+  }
+
+  handleEditingPlantingInList = (plantingToEdit) => {
+    const editedMainPlantingList = state.mainPlantingList
+      .filter(planting => planting.id !== state.selectedPlanting.id)
+      .concat(plantingToEdit);
+    setState({
+      ...state,
+      mainPlantingList: editedMainPlantingList,
+      editing: false,
+      selectedPlanting: null
+    });
+  }
+
+  handleAddingNewPlantingToList = (newPlanting) => {
+    const newMainPlantingList = state.mainPlantingList.concat(newPlanting);
+    setState({
+      ...state,
+      formVisible: false,
+      mainPlantingList: newMainPlantingList
+    });
+  }
+
+  handleChangingSelectedPlanting = (id) => {
+    const selectedPlanting = this.state.mainPlantingList.filter(planting => planting.id === id)[0];
+    setState(...state, {selectedPlanting: selectedPlanting});
+  }
+
+
 
   return (
     <React.Fragment>
