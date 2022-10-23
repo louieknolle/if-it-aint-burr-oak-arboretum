@@ -5,7 +5,7 @@ function Planting(props){
 
   return (
     <React.Fragment>
-      <div className="flex flex-col justify-center items-center border border-amber-900 shadow-md">
+      <div className="flex flex-col justify-center items-center border border-amber-900 shadow-md {!props.treeInventory ? 'hiddenCard' : ''}">
         <div className="cursor-pointer p-4" onClick = {() => props.whenPlantingClicked(props.id) } >
           <h3 className="hover:decoration-solid" >{props.species} Planting</h3>
           <h5 className="hover:decoration-solid" >{props.treeInventory} Trees Left</h5>

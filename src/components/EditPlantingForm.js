@@ -11,7 +11,7 @@ function EditPlantingForm (props) {
       species: event.target.species.value, 
       hardinessZone: event.target.hardinessZone.value, 
       typeOfSoil: event.target.typeOfSoil.value, 
-      treeInventory: event.target.treeInventory.value,
+      treeInventory: parseInt(event.target.treeInventory.value),
       id: planting.id
     });
   }
