@@ -9,21 +9,25 @@ const MultiUseForm = (props) => {
         className='container py-10 px-10 mx-0 min-w-full grid place-items-center'
         >
         <input
+          required
           className='border-2 m-2'
           type='text'
           name='species'
           placeholder='Tree species' />
         <input
+          required
           className='border-2 m-2'
           type='text'
           name='hardinessZone'
           placeholder='Plant Hardiness Zone' />
         <input
+          required
           type='text'
           className='border-2 m-2'
           name='typeOfSoil'
           placeholder='Prefrred soil (e.g. loamy)' />
         <input
+          required
           type='number'
           className='border-2 m-2'
           name='treeInventory'
