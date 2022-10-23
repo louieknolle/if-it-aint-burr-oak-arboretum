@@ -52,13 +52,9 @@ const TreeInventoryControl = () => {
 
   function handleDecrementTreeInventory(id) {
     const selection = mainPlantingList.filter(planting => planting.id === id)[0];
-    // const selectionIndex = mainPlantingList.indexOf(selection);
     const remainingPlantings = mainPlantingList.filter(planting => planting.id !== selection);
     selection.treeInventory = selection.treeInventory - 1;
-    // const newMainPlantingList = remainingPlantings.slice(0, selectionIndex)
-    //                             .concat(selection)
-    //                             .concat(remainingPlantings.slice(selectionIndex));
-    const newMainPlantingList = remainingPlantings.concat(selection);
+    const newMainPlantingList = remainingPlantings;
     setMainPlantingList(newMainPlantingList);
   }
 

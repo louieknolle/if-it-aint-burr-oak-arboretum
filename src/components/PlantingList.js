@@ -6,7 +6,7 @@ function PlantingList(props){
 
   return (
     <React.Fragment>
-      <hr/>
+      <div className='flex flex-wrap justify-center items-center gap-8'>
       {props.plantingList.map((planting) =>
         <Planting 
           whenPlantingClicked={props.onPlantingSelection}
@@ -19,7 +19,8 @@ function PlantingList(props){
           key={planting.id}
           className='card'
           />
-      )}
+          )}
+      </div>
     </React.Fragment>
   );
 }

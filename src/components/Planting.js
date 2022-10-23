@@ -5,12 +5,16 @@ function Planting(props){
 
   return (
     <React.Fragment>
-      <div onClick = {() => props.whenPlantingClicked(props.id)}>
-        <h3>{props.species} Planting</h3>
-        <h5>{props.treeInventory} Trees Left</h5>
+      <div className="flex flex-col justify-center items-center border border-amber-900 shadow-md">
+        <div className="cursor-pointer p-4" onClick = {() => props.whenPlantingClicked(props.id) } >
+          <h3 className="hover:decoration-solid" >{props.species} Planting</h3>
+          <h5 className="hover:decoration-solid" >{props.treeInventory} Trees Left</h5>
+        </div>
+        <button className='border-4 p-4 m-4 flex' onClick={() => props.whenSellTreeClicked(props.id)} disabled={!props.treeInventory}>
+          {(props.treeInventory) ? 'Sell a tree' : 'Sold out!'}
+        </button>
       </div>
-        <button className='border-4 p-4 m-4 flex' onClick={() => props.whenSellTreeClicked(props.id)} >Sell a tree</button>
-        <hr/>
+      
     </React.Fragment>
   );
 }
