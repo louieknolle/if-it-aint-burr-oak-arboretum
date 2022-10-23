@@ -36,7 +36,7 @@ const TreeInventoryControl = () => {
       .concat(plantingToEdit);
     setEditing(false);
     setMainPlantingList(editedMainPlantingList);
-    
+    setSelectedPlanting(null);
   }
 
   function handleAddingNewPlantingToList(newPlanting) {
