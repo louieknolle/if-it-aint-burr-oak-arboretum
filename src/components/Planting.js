@@ -13,8 +13,7 @@ function Planting(props){
         <button className='border-4 p-4 m-4 flex' onClick={() => props.whenSellTreeClicked(props.id)} disabled={!props.treeInventory}>
           {(props.treeInventory) ? 'Sell a tree' : 'Sold out!'}
         </button>
-      </div>
-      
+      </div> 
     </React.Fragment>
   );
 }
